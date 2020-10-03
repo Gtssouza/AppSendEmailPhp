@@ -59,7 +59,7 @@ try {
 
     //Recipients
     $mail->setFrom('gtssouza94@gmail.com', 'TESTANDO');
-    $mail->addAddress('gtssouza94@gmail.com', 'Destinatario');     // Add a recipient
+    $mail->addAddress($mensagem->__get('para'));     // Add a recipient
     //$mail->addReplyTo('info@example.com', 'Information');
     //$mail->addCC('cc@example.com');
     //$mail->addBCC('bcc@example.com');
@@ -70,12 +70,12 @@ try {
 
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = 'Here is the subject';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+    $mail->Subject = $mensagem->__get('assunto');
+    $mail->Body    = $mensagem->__get('mensagem');
     //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
-    echo 'Message has been sent';
+    echo 'E-mail enviado com sucesso!';
 } catch (Exception $e) {
     echo "Não foi possivel enviar este e-mail. Mailer Error: {$mail->ErrorInfo}";
 }
